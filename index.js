@@ -18,6 +18,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 client.connect(err => {
     const collection = client.db("panBatabase").collection("shoes");
 
+    // order shoe
     app.post('/addOrder', (req, res) => {
         const newOrder = req.body;
         collection.insertOne(newOrder)
@@ -25,6 +26,15 @@ client.connect(err => {
                 res.send(result.insertedCount > 0)
             })
     });
+
+
+     // All orders
+     app.get('/allOrders', (req, res) => {
+        collection.find({})
+          .toArray((err, shoes) => {
+            res.send(shoes)
+          })
+      })
     console.log(err)
 });
 
