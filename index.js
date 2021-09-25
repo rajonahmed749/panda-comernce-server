@@ -11,7 +11,6 @@ app.use(bodyParser.json())
 app.use(cors())
 
 
-
 const uri = `mongodb+srv://pandaCommerce:${process.env.DB_PASS}@cluster0.slusw.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -26,7 +25,6 @@ client.connect(err => {
                 res.send(result.insertedCount > 0)
             })
     });
-
 
      // All orders
      app.get('/allOrders', (req, res) => {
